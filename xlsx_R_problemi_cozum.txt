@@ -1,0 +1,21 @@
+xlsx_paket_sorunu_cozumu_R
+
+https://stackoverflow.com/questions/17376939/problems-when-trying-to-load-a-package-in-r-due-to-rjava
+
+You can also try the new R package that takes care of Java installation in one command: https://github.com/e-kotov/rJavaEnv
+
+To install the package:
+
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+remotes::install_github("e-kotov/rJavaEnv")
+To install Java:
+
+rJavaEnv::java_quick_install(version = 21)
+This will download Java 21 (you are free to change the version, if there are any specific requirements for the R package you are using), extract it into cache folder and link it to your current working directory, set the environment variables for Java to work in the current session and save the settings to set this Java in the .Rprofile of the current project/working directory. Read more in the package documentation: http://www.ekotov.pro/rJavaEnv/
+
+P.S. Disclosure: I'm the package author.
+
+P.P.S at the moment this may not work on some Linux and Intel-based macOS systems.
